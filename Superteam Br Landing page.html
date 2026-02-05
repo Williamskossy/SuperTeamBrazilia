@@ -1,0 +1,2497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superteam Brazil - Building the Future of Web3 in Brazil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Superteam Brasil Primary Colors */
+            --brasil-green: #008c4c;
+            --brasil-yellow: #ffd23f;
+            --brasil-beige: #f7eacb;
+            --brasil-dark-green: #2f6b3f;
+            --brasil-dark: #1b231d;
+            
+            /* Solana Colors (for ecosystem connection) */
+            --solana-purple: var(--brasil-green);
+            --solana-green: #14F195;
+            --solana-gradient: linear-gradient(135deg, #008c4c 0%, #ffd23f 100%);
+            
+            /* UI Colors */
+            --dark-bg: #0A0A0A;
+            --card-bg: #151515;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --accent-cyan: #14F195;
+            --accent-yellow: #ffd23f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Archivo', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Archivo', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--solana-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.2;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-bg-element:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: var(--brazil-green);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .hero-bg-element:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: var(--brazil-yellow);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 2s;
+        }
+
+        .hero-bg-element:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: var(--solana-purple);
+            top: 50%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+
+        .hero .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(20, 241, 149, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .brazil-flag {
+            font-size: 1.2rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        h1 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            min-height: 140px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        /* Typing Animation */
+        .typed-text {
+            display: inline-block;
+            border-right: 3px solid var(--accent-cyan);
+            padding-right: 8px;
+            animation: blink 0.7s infinite;
+            min-width: 100%;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                border-color: var(--accent-cyan);
+            }
+            51%, 100% {
+                border-color: transparent;
+            }
+        }
+
+        .gradient-text {
+            background: var(--solana-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--solana-gradient);
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 140, 76, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(153, 69, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.6s both;
+        }
+
+        .community-carousel {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .community-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            animation: fadeIn 0.6s ease-out both;
+        }
+
+        .community-card:nth-child(1) { animation-delay: 0.8s; }
+        .community-card:nth-child(2) { animation-delay: 0.9s; }
+        .community-card:nth-child(3) { animation-delay: 1s; }
+        .community-card:nth-child(4) { animation-delay: 1.1s; }
+        .community-card:nth-child(5) { animation-delay: 1.2s; }
+        .community-card:nth-child(6) { animation-delay: 1.3s; }
+
+        .community-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 40px rgba(20, 241, 149, 0.2);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-stat {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--solana-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .pillar-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(0, 140, 76, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 140, 76, 0.3);
+        }
+
+        .pillar-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(0, 140, 76, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, rgba(0, 140, 76, 0.05) 0%, rgba(255, 210, 63, 0.05) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            background: var(--solana-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Events Section */
+        .events {
+            padding: 8rem 5%;
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 4rem auto 0;
+        }
+
+        .events-column h3 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .event-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateX(8px);
+            border-color: var(--accent-cyan);
+        }
+
+        .event-date {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(20, 241, 149, 0.1);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .event-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .events-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Members Section */
+        .members {
+            padding: 8rem 5%;
+            background: var(--card-bg);
+        }
+
+        .filter-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-tag {
+            padding: 0.6rem 1.5rem;
+            background: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: rgba(20, 241, 149, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .member-card {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: scale(1.1);
+        }
+
+        .member-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--brasil-green) 0%, var(--brasil-yellow) 100%);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .member-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .members-cta {
+            text-align: center;
+        }
+
+        /* Full Members Directory Section */
+        .members-full {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box-full {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-box-full input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box-full input:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .search-box-full input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .search-box-full .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .members-grid-full {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .member-card-full {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .member-card-full::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--solana-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .member-card-full:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 60px rgba(20, 241, 149, 0.15);
+        }
+
+        .member-card-full:hover::before {
+            transform: scaleX(1);
+        }
+
+        .member-card-full.core-team {
+            background: rgba(0, 140, 76, 0.08);
+            border-color: rgba(0, 140, 76, 0.3);
+        }
+
+        .core-team-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--solana-gradient);
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .member-card-full .member-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--brasil-green) 0%, var(--brasil-yellow) 100%);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .member-card-full .member-info {
+            text-align: center;
+        }
+
+        .member-card-full .member-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-card-full .member-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .member-card-full .member-skills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .skill-badge {
+            padding: 0.3rem 0.8rem;
+            background: rgba(20, 241, 149, 0.1);
+            border: 1px solid rgba(20, 241, 149, 0.3);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        .member-card-full .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(20, 241, 149, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .no-results h3 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* NEW: Partners Section */
+        .partners {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .partner-logo {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 40px rgba(20, 241, 149, 0.2);
+        }
+
+        .partner-placeholder {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .partner-logo:hover .partner-placeholder {
+            opacity: 1;
+            color: var(--accent-cyan);
+        }
+
+        /* NEW: Wall of Love Section */
+        .wall-of-love {
+            padding: 8rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .tweets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tweet-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .tweet-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brasil-green);
+            box-shadow: 0 10px 40px rgba(0, 140, 76, 0.15);
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tweet-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--solana-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+
+        .tweet-author {
+            flex: 1;
+        }
+
+        .tweet-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .tweet-handle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .tweet-icon {
+            font-size: 1.5rem;
+            color: var(--brasil-green);
+        }
+
+        .tweet-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .tweet-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        /* NEW: FAQ Section */
+        .faq {
+            padding: 8rem 5%;
+            background: var(--card-bg);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .faq-question {
+            padding: 1.8rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: var(--accent-cyan);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.8rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            padding: 8rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 140, 76, 0.1) 0%, transparent 70%);
+        }
+
+        .footer-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-cta h2 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .footer-cta p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+            background: rgba(20, 241, 149, 0.05);
+            box-shadow: 0 10px 30px rgba(20, 241, 149, 0.2);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        .newsletter {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter input:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .newsletter input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .newsletter button {
+            padding: 1.2rem 2rem;
+            background: var(--solana-gradient);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 140, 76, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-social-icon:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(20px, 20px) scale(1.05);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+            }
+
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .members-grid-full {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .tweets-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .members-grid-full {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tweets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .footer-cta h2 {
+                font-size: 2.5rem;
+            }
+
+            .newsletter {
+                flex-direction: column;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box-full {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">SUPERTEAM BR</div>
+            <ul class="nav-links">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#members">Members</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#join">Join Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Animated Background Canvas -->
+    <canvas class="bg-canvas" id="bgCanvas"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-element"></div>
+        <div class="hero-bg-element"></div>
+        <div class="hero-bg-element"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="brazil-flag">🇧🇷</span>
+                    <span>Building on Solana in Brazil</span>
+                </div>
+                
+                <h1>
+                    <span class="typed-text" id="typedText"></span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Superteam Brazil is the premier hub for Solana builders, creators, and founders in Latin America's largest market. Join a thriving community shaping the future of decentralized technology.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="#join" class="btn btn-primary">Join Community</a>
+                    <a href="#events" class="btn btn-secondary">Explore Opportunities</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="community-carousel">
+                    <div class="community-card">
+                        <div class="card-icon" style="background: rgba(0, 140, 76, 0.1);">🚀</div>
+                        <div class="card-title">Active Projects</div>
+                        <div class="card-stat">47</div>
+                    </div>
+                    <div class="community-card">
+                        <div class="card-icon" style="background: rgba(20, 241, 149, 0.1);">💎</div>
+                        <div class="card-title">Builders</div>
+                        <div class="card-stat">320+</div>
+                    </div>
+                    <div class="community-card">
+                        <div class="card-icon" style="background: rgba(255, 210, 63, 0.1);">🎯</div>
+                        <div class="card-title">Events Hosted</div>
+                        <div class="card-stat">28</div>
+                    </div>
+                    <div class="community-card">
+                        <div class="card-icon" style="background: rgba(47, 107, 63, 0.1);">💰</div>
+                        <div class="card-title">Grants Given</div>
+                        <div class="card-stat">$450k</div>
+                    </div>
+                    <div class="community-card">
+                        <div class="card-icon" style="background: rgba(0, 140, 76, 0.1);">🌟</div>
+                        <div class="card-title">Opportunities</div>
+                        <div class="card-stat">156</div>
+                    </div>
+                    <div class="community-card">
+                        <div class="card-icon" style="background: rgba(20, 241, 149, 0.1);">🎓</div>
+                        <div class="card-title">Workshops</div>
+                        <div class="card-stat">15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission" id="mission">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Our Mission</div>
+                <h2 class="section-title">Building Brazil's Web3 Ecosystem</h2>
+                <p class="section-description">
+                    Superteam Brazil empowers the next generation of blockchain innovators with resources, mentorship, and opportunities to build the future on Solana.
+                </p>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🛠️</div>
+                    <h3 class="pillar-title">Builder Support & Mentorship</h3>
+                    <p class="pillar-description">
+                        Connect with experienced mentors, receive technical guidance, and access resources to accelerate your Solana projects from idea to launch.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">🎪</div>
+                    <h3 class="pillar-title">Event Programming</h3>
+                    <p class="pillar-description">
+                        Join hackathons, workshops, and meetups across Brazil. Learn from industry leaders and collaborate with passionate builders in person.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">💸</div>
+                    <h3 class="pillar-title">Grants & Funding Access</h3>
+                    <p class="pillar-description">
+                        Access funding opportunities, bounty programs, and grants to bring your innovative Solana projects to life without financial barriers.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">💼</div>
+                    <h3 class="pillar-title">Job & Bounty Opportunities</h3>
+                    <p class="pillar-description">
+                        Discover full-time positions, freelance gigs, and paid bounties from leading Web3 companies building on Solana.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">📚</div>
+                    <h3 class="pillar-title">Education & Workshops</h3>
+                    <p class="pillar-description">
+                        Master Solana development through comprehensive tutorials, coding workshops, and educational content tailored for Brazilian developers.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">🤝</div>
+                    <h3 class="pillar-title">Network Connections</h3>
+                    <p class="pillar-description">
+                        Build lasting relationships with founders, investors, and fellow builders. Your network is your net worth in Web3.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="320">0</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="47">0</div>
+                <div class="stat-label">Projects Launched</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="28">0</div>
+                <div class="stat-label">Events Hosted</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="156">0</div>
+                <div class="stat-label">Bounties Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="89">0</div>
+                <div class="stat-label">Community GDP (M)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Events</div>
+                <h2 class="section-title">Join Us in Building</h2>
+            </div>
+
+            <div class="events-container">
+                <div class="events-column">
+                    <h3>📅 Upcoming Events</h3>
+                    
+                    <div class="event-card">
+                        <div class="event-date">FEB 15, 2026</div>
+                        <div class="event-title">Solana Brasil Hackathon</div>
+                        <div class="event-description">
+                            48-hour intensive hackathon with $50k in prizes. Build the next generation of DeFi applications.
+                        </div>
+                        <div class="event-location">📍 São Paulo</div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-date">FEB 28, 2026</div>
+                        <div class="event-title">Web3 Builder Workshop</div>
+                        <div class="event-description">
+                            Learn Anchor framework fundamentals and deploy your first Solana program.
+                        </div>
+                        <div class="event-location">📍 Rio de Janeiro</div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-date">MAR 10, 2026</div>
+                        <div class="event-title">Superteam Meetup</div>
+                        <div class="event-description">
+                            Monthly networking event. Connect with founders, investors, and fellow builders.
+                        </div>
+                        <div class="event-location">📍 Online</div>
+                    </div>
+                </div>
+
+                <div class="events-column">
+                    <h3>✨ Past Highlights</h3>
+                    
+                    <div class="event-card">
+                        <div class="event-date">JAN 20, 2026</div>
+                        <div class="event-title">Solana Summer Brasil</div>
+                        <div class="event-description">
+                            Two-week intensive bootcamp with 50+ builders. Launched 12 new projects.
+                        </div>
+                        <div class="event-location">📍 São Paulo</div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-date">DEC 10, 2025</div>
+                        <div class="event-title">NFT Creator Workshop</div>
+                        <div class="event-description">
+                            Hands-on workshop on creating and launching NFT collections on Solana.
+                        </div>
+                        <div class="event-location">📍 Brasília</div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-date">NOV 18, 2025</div>
+                        <div class="event-title">DeFi Deep Dive</div>
+                        <div class="event-description">
+                            Technical deep dive into Solana's DeFi ecosystem and architecture.
+                        </div>
+                        <div class="event-location">📍 Online</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="events-cta">
+                <a href="https://lu.ma/superteambrazil" class="btn btn-primary" target="_blank">
+                    View All Events on Lu.ma →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section class="members" id="members">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Community</div>
+                <h2 class="section-title">Meet Our Builders</h2>
+                <p class="section-description">
+                    A diverse community of developers, designers, founders, and creators building the future of Web3 in Brazil.
+                </p>
+            </div>
+
+            <div class="filter-tags">
+                <div class="filter-tag active">All</div>
+                <div class="filter-tag">Dev</div>
+                <div class="filter-tag">Design</div>
+                <div class="filter-tag">Content</div>
+                <div class="filter-tag">Biz Dev</div>
+            </div>
+
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">LC</div>
+                    <div class="member-name">Lucas Costa</div>
+                    <div class="member-role">Core Contributor</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">MS</div>
+                    <div class="member-name">Maria Silva</div>
+                    <div class="member-role">DeFi Builder</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">RA</div>
+                    <div class="member-name">Rafael Alves</div>
+                    <div class="member-role">Smart Contract Dev</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">AS</div>
+                    <div class="member-name">Ana Santos</div>
+                    <div class="member-role">NFT Artist</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">PM</div>
+                    <div class="member-name">Pedro Martins</div>
+                    <div class="member-role">Protocol Engineer</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">JO</div>
+                    <div class="member-name">Julia Oliveira</div>
+                    <div class="member-role">Community Lead</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">TR</div>
+                    <div class="member-name">Thiago Rocha</div>
+                    <div class="member-role">Founder</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">CF</div>
+                    <div class="member-name">Camila Ferreira</div>
+                    <div class="member-role">Designer</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">DN</div>
+                    <div class="member-name">Diego Nunes</div>
+                    <div class="member-role">Blockchain Dev</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">BL</div>
+                    <div class="member-name">Beatriz Lima</div>
+                    <div class="member-role">Product Manager</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">GA</div>
+                    <div class="member-name">Gabriel Araujo</div>
+                    <div class="member-role">Full Stack Dev</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">IS</div>
+                    <div class="member-name">Isabella Souza</div>
+                    <div class="member-role">Content Creator</div>
+                </div>
+            </div>
+
+            <div class="members-cta">
+                <a href="#members-full" class="btn btn-primary">View All Members →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Members Directory Section -->
+    <section class="members-full" id="members-full">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">FULL DIRECTORY</div>
+                <h2 class="section-title">All Community Members</h2>
+                <p class="section-description">
+                    Browse our complete community of 320+ builders, designers, and creators.
+                </p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="filter-controls">
+                <div class="search-box-full">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInputFull" placeholder="Search by name, role, or skill...">
+                </div>
+                <div class="filter-tags">
+                    <div class="filter-tag active" data-filter="all">All</div>
+                    <div class="filter-tag" data-filter="core-team">Core Team</div>
+                    <div class="filter-tag" data-filter="rust">Rust</div>
+                    <div class="filter-tag" data-filter="frontend">Frontend</div>
+                    <div class="filter-tag" data-filter="design">Design</div>
+                    <div class="filter-tag" data-filter="content">Content</div>
+                    <div class="filter-tag" data-filter="growth">Growth</div>
+                </div>
+            </div>
+
+            <!-- Full Members Grid -->
+            <div class="members-grid-full" id="membersGridFull">
+                <!-- Core Team Members -->
+                <div class="member-card-full core-team" data-skills="rust frontend core-team" data-name="Lucas Costa" data-role="Core Contributor">
+                    <div class="core-team-badge">CORE TEAM</div>
+                    <div class="member-avatar">LC</div>
+                    <div class="member-info">
+                        <div class="member-name">Lucas Costa</div>
+                        <div class="member-title">Core Contributor • Solana Labs</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                            <span class="skill-badge">Frontend</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full core-team" data-skills="rust design core-team" data-name="Maria Silva" data-role="DeFi Builder">
+                    <div class="core-team-badge">CORE TEAM</div>
+                    <div class="member-avatar">MS</div>
+                    <div class="member-info">
+                        <div class="member-name">Maria Silva</div>
+                        <div class="member-title">DeFi Builder • Jupiter</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                            <span class="skill-badge">Design</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full core-team" data-skills="rust core-team" data-name="Rafael Alves" data-role="Smart Contract Dev">
+                    <div class="core-team-badge">CORE TEAM</div>
+                    <div class="member-avatar">RA</div>
+                    <div class="member-info">
+                        <div class="member-name">Rafael Alves</div>
+                        <div class="member-title">Smart Contract Dev • Marinade</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full core-team" data-skills="design content core-team" data-name="Ana Santos" data-role="NFT Artist">
+                    <div class="core-team-badge">CORE TEAM</div>
+                    <div class="member-avatar">AS</div>
+                    <div class="member-info">
+                        <div class="member-name">Ana Santos</div>
+                        <div class="member-title">NFT Artist • Magic Eden</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Design</span>
+                            <span class="skill-badge">Content</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full core-team" data-skills="rust frontend core-team" data-name="Pedro Martins" data-role="Protocol Engineer">
+                    <div class="core-team-badge">CORE TEAM</div>
+                    <div class="member-avatar">PM</div>
+                    <div class="member-info">
+                        <div class="member-name">Pedro Martins</div>
+                        <div class="member-title">Protocol Engineer • Helius</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                            <span class="skill-badge">Frontend</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full core-team" data-skills="growth content core-team" data-name="Julia Oliveira" data-role="Community Lead">
+                    <div class="core-team-badge">CORE TEAM</div>
+                    <div class="member-avatar">JO</div>
+                    <div class="member-info">
+                        <div class="member-name">Julia Oliveira</div>
+                        <div class="member-title">Community Lead • Superteam BR</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Growth</span>
+                            <span class="skill-badge">Content</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regular Members -->
+                <div class="member-card-full" data-skills="rust" data-name="Thiago Rocha" data-role="Founder">
+                    <div class="member-avatar">TR</div>
+                    <div class="member-info">
+                        <div class="member-name">Thiago Rocha</div>
+                        <div class="member-title">Founder • DeFi Startup</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="design" data-name="Camila Ferreira" data-role="Product Designer">
+                    <div class="member-avatar">CF</div>
+                    <div class="member-info">
+                        <div class="member-name">Camila Ferreira</div>
+                        <div class="member-title">Product Designer • Phantom</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Design</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="rust frontend" data-name="Diego Nunes" data-role="Blockchain Dev">
+                    <div class="member-avatar">DN</div>
+                    <div class="member-info">
+                        <div class="member-name">Diego Nunes</div>
+                        <div class="member-title">Blockchain Dev • Freelance</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                            <span class="skill-badge">Frontend</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="growth" data-name="Beatriz Lima" data-role="Product Manager">
+                    <div class="member-avatar">BL</div>
+                    <div class="member-info">
+                        <div class="member-name">Beatriz Lima</div>
+                        <div class="member-title">Product Manager • Tensor</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Growth</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="frontend" data-name="Gabriel Araujo" data-role="Full Stack Dev">
+                    <div class="member-avatar">GA</div>
+                    <div class="member-info">
+                        <div class="member-name">Gabriel Araujo</div>
+                        <div class="member-title">Full Stack Dev • Orca</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Frontend</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="content" data-name="Isabella Souza" data-role="Content Creator">
+                    <div class="member-avatar">IS</div>
+                    <div class="member-info">
+                        <div class="member-name">Isabella Souza</div>
+                        <div class="member-title">Content Creator • Freelance</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Content</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="rust" data-name="Felipe Santos" data-role="Protocol Dev">
+                    <div class="member-avatar">FS</div>
+                    <div class="member-info">
+                        <div class="member-name">Felipe Santos</div>
+                        <div class="member-title">Protocol Dev • Squads</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Rust</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card-full" data-skills="design frontend" data-name="Larissa Mendes" data-role="UI/UX Designer">
+                    <div class="member-avatar">LM</div>
+                    <div class="member-info">
+                        <div class="member-name">Larissa Mendes</div>
+                        <div class="member-title">UI/UX Designer • Metaplex</div>
+                        <div class="member-skills">
+                            <span class="skill-badge">Design</span>
+                            <span class="skill-badge">Frontend</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">𝕏</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResultsFull" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No Members Found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Trusted By / Ecosystem Partners -->
+    <section class="partners">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Ecosystem</div>
+                <h2 class="section-title">Trusted By Leading Projects</h2>
+                <p class="section-description">
+                    Partnering with the best teams building on Solana in Brazil and globally.
+                </p>
+            </div>
+
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Marinade</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Jupiter</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Magic Eden</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Phantom</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Helius</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Metaplex</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Raydium</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Orca</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Squads</div>
+                </div>
+                <div class="partner-logo">
+                    <div class="partner-placeholder">Tensor</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Latest Tweets / Wall of Love -->
+    <section class="wall-of-love">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Wall of Love</div>
+                <h2 class="section-title">What Our Community Says</h2>
+                <p class="section-description">
+                    Hear from builders, founders, and ecosystem leaders about their Superteam Brazil experience.
+                </p>
+            </div>
+
+            <div class="tweets-grid">
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">LC</div>
+                        <div class="tweet-author">
+                            <div class="tweet-name">Lucas Costa</div>
+                            <div class="tweet-handle">@lucasdev</div>
+                        </div>
+                        <div class="tweet-icon">𝕏</div>
+                    </div>
+                    <div class="tweet-content">
+                        "Superteam Brazil helped me go from learning Solana to launching my first DeFi protocol in just 3 months. The mentorship and community support were incredible!"
+                    </div>
+                    <div class="tweet-date">Jan 15, 2026</div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">MS</div>
+                        <div class="tweet-author">
+                            <div class="tweet-name">Maria Silva</div>
+                            <div class="tweet-handle">@mariabuilds</div>
+                        </div>
+                        <div class="tweet-icon">𝕏</div>
+                    </div>
+                    <div class="tweet-content">
+                        "The hackathon was amazing! Not only did we win a prize, but I also met my co-founders. Now we're building full-time on Solana thanks to the connections made here."
+                    </div>
+                    <div class="tweet-date">Jan 12, 2026</div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">RA</div>
+                        <div class="tweet-author">
+                            <div class="tweet-name">Rafael Alves</div>
+                            <div class="tweet-handle">@rafaelweb3</div>
+                        </div>
+                        <div class="tweet-icon">𝕏</div>
+                    </div>
+                    <div class="tweet-content">
+                        "Best Web3 community in Brazil, hands down. The quality of builders and the level of technical discussions is unmatched. Grateful to be part of this!"
+                    </div>
+                    <div class="tweet-date">Jan 8, 2026</div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">AS</div>
+                        <div class="tweet-author">
+                            <div class="tweet-name">Ana Santos</div>
+                            <div class="tweet-handle">@anaNFT</div>
+                        </div>
+                        <div class="tweet-icon">𝕏</div>
+                    </div>
+                    <div class="tweet-content">
+                        "As an artist, I was nervous about getting into Web3. Superteam Brazil made it so welcoming. Now I've launched 2 successful NFT collections!"
+                    </div>
+                    <div class="tweet-date">Dec 28, 2025</div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">PM</div>
+                        <div class="tweet-author">
+                            <div class="tweet-name">Pedro Martins</div>
+                            <div class="tweet-handle">@pedrosolana</div>
+                        </div>
+                        <div class="tweet-icon">𝕏</div>
+                    </div>
+                    <div class="tweet-content">
+                        "The bounties helped me transition from Web2 to Web3 development. Started with small tasks, learned the stack, and now I have a full-time job at a Solana protocol!"
+                    </div>
+                    <div class="tweet-date">Dec 20, 2025</div>
+                </div>
+
+                <div class="tweet-card">
+                    <div class="tweet-header">
+                        <div class="tweet-avatar">JO</div>
+                        <div class="tweet-author">
+                            <div class="tweet-name">Julia Oliveira</div>
+                            <div class="tweet-handle">@juliacrypto</div>
+                        </div>
+                        <div class="tweet-icon">𝕏</div>
+                    </div>
+                    <div class="tweet-content">
+                        "Superteam Brazil isn't just a community—it's a movement. We're building the future of finance in Brazil, and I'm honored to be part of this journey."
+                    </div>
+                    <div class="tweet-date">Dec 15, 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">FAQ</div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-description">
+                    Everything you need to know about joining Superteam Brazil.
+                </p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is Superteam Brazil?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Superteam Brazil is the premier community for Solana builders in Brazil. We bring together developers, designers, founders, and creators to collaborate on Web3 projects, access opportunities, and shape the future of decentralized technology in Latin America's largest market.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I become a member?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Getting started is easy! Join our Telegram or Discord community, introduce yourself, and start engaging. Participate in events, contribute to discussions, complete bounties, or submit your project. Active contributors can apply for official membership to access exclusive opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What opportunities are available?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer diverse opportunities including: paid bounties and freelance work, grants for new projects, full-time job placements, mentorship programs, hackathon prizes, networking with founders and investors, and access to exclusive workshops and educational content.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can projects partner with Superteam Brazil?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Solana projects can partner with us to access top Brazilian talent, host workshops and events, post bounties and job opportunities, sponsor hackathons, and gain visibility in the Brazilian Web3 ecosystem. Reach out via Telegram or email for partnership inquiries.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need to be a developer to join?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not at all! While developers are core to our community, we welcome designers, content creators, marketers, community managers, business development professionals, and anyone passionate about Web3. There's a place for every skill set in the Solana ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta" id="join">
+        <div class="footer-cta-content">
+            <h2>Ready to Build on Solana?</h2>
+            <p>Join hundreds of builders, creators, and founders shaping the future of Web3 in Brazil.</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-btn">
+                    <span class="social-icon">💬</span>
+                    <span>Join Telegram</span>
+                </a>
+                <a href="#" class="social-btn">
+                    <span class="social-icon">💬</span>
+                    <span>Join Discord</span>
+                </a>
+                <a href="#" class="social-btn">
+                    <span class="social-icon">𝕏</span>
+                    <span>Follow on Twitter</span>
+                </a>
+                <a href="#" class="social-btn">
+                    <span class="social-icon">📸</span>
+                    <span>Instagram</span>
+                </a>
+            </div>
+
+            <div class="newsletter">
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Events</a>
+                <a href="#">Opportunities</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-social">
+                <div class="footer-social-icon">𝕏</div>
+                <div class="footer-social-icon">💬</div>
+                <div class="footer-social-icon">📱</div>
+                <div class="footer-social-icon">📧</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animated background canvas
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(153, 69, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.strokeStyle = `rgba(20, 241, 149, ${0.1 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Animated counter for stats
+        const animateCounter = (element) => {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        };
+
+        // Intersection Observer for stats animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(num => animateCounter(num));
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Filter functionality (preview section)
+        document.querySelectorAll('.members .filter-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.members .filter-tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+            });
+        });
+
+        // Full Members Directory Filter & Search
+        const searchInputFull = document.getElementById('searchInputFull');
+        const membersGridFull = document.getElementById('membersGridFull');
+        const noResultsFull = document.getElementById('noResultsFull');
+        let currentFilterFull = 'all';
+
+        // Full members filter tags
+        document.querySelectorAll('.members-full .filter-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.members-full .filter-tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                currentFilterFull = tag.dataset.filter;
+                filterFullMembers();
+            });
+        });
+
+        // Full members search
+        if (searchInputFull) {
+            searchInputFull.addEventListener('input', filterFullMembers);
+        }
+
+        function filterFullMembers() {
+            const searchTerm = searchInputFull ? searchInputFull.value.toLowerCase() : '';
+            const memberCards = membersGridFull ? membersGridFull.querySelectorAll('.member-card-full') : [];
+            let visibleCount = 0;
+
+            memberCards.forEach(card => {
+                const skills = card.dataset.skills || '';
+                const name = (card.dataset.name || '').toLowerCase();
+                const role = (card.dataset.role || '').toLowerCase();
+                
+                const matchesFilter = currentFilterFull === 'all' || skills.includes(currentFilterFull);
+                const matchesSearch = name.includes(searchTerm) || 
+                                    role.includes(searchTerm) || 
+                                    skills.includes(searchTerm);
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            if (noResultsFull) {
+                if (visibleCount === 0) {
+                    noResultsFull.style.display = 'block';
+                } else {
+                    noResultsFull.style.display = 'none';
+                }
+            }
+        }
+
+        // Typing Animation - Simplified and Fixed
+        const typedTextElement = document.getElementById('typedText');
+        const texts = [
+            {
+                pt: 'O Futuro do ',
+                web3: 'Web3',
+                end: ' Começa Aqui'
+            },
+            {
+                pt: 'The Future of ',
+                web3: 'Web3',
+                end: ' Starts Here'
+            }
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let currentPart = 'pt'; // pt, web3, or end
+
+        function type() {
+            const current = texts[textIndex];
+            const fullText = current.pt + current.web3 + current.end;
+            
+            if (!isDeleting) {
+                // Typing forward
+                charIndex++;
+                
+                let displayText = '';
+                let counted = 0;
+                
+                // Build the text with gradient
+                if (charIndex <= current.pt.length) {
+                    displayText = current.pt.substring(0, charIndex);
+                } else if (charIndex <= current.pt.length + current.web3.length) {
+                    let web3Chars = charIndex - current.pt.length;
+                    displayText = current.pt + '<span class="gradient-text">' + current.web3.substring(0, web3Chars) + '</span>';
+                } else {
+                    let endChars = charIndex - current.pt.length - current.web3.length;
+                    displayText = current.pt + '<span class="gradient-text">' + current.web3 + '</span>' + current.end.substring(0, endChars);
+                }
+                
+                typedTextElement.innerHTML = displayText;
+                
+                if (charIndex === fullText.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000);
+                    return;
+                }
+                setTimeout(type, 100);
+            } else {
+                // Deleting
+                charIndex--;
+                
+                let displayText = '';
+                
+                if (charIndex <= current.pt.length) {
+                    displayText = current.pt.substring(0, charIndex);
+                } else if (charIndex <= current.pt.length + current.web3.length) {
+                    let web3Chars = charIndex - current.pt.length;
+                    displayText = current.pt + '<span class="gradient-text">' + current.web3.substring(0, web3Chars) + '</span>';
+                } else {
+                    let endChars = charIndex - current.pt.length - current.web3.length;
+                    displayText = current.pt + '<span class="gradient-text">' + current.web3 + '</span>' + current.end.substring(0, endChars);
+                }
+                
+                typedTextElement.innerHTML = displayText;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(type, 500);
+                    return;
+                }
+                setTimeout(type, 50);
+            }
+        }
+
+        // Start typing animation after page load
+        setTimeout(type, 1500);
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-visual');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
